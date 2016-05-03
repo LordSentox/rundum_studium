@@ -1,0 +1,41 @@
+2)
+Der Operator | heißt Pipe. Setzt man ihn zwischen zwei Befehle, so wird der
+linke Befehl ausgeführt und die Ausgabe des Befehls wird in den von der Pipe
+rechten Befehl als Argument übergeben.
+Der Operator ; derweil sorgt dafür, dass zwei Befehle nacheinander ausgeführt
+werden. Hierbei ist es anders als bei && egal, ob der erste Befehl erfolgreich
+ausgeführt wurde oder nicht. (Wie auch bei Java wird bei && nur die erste Aussage
+überprüft, sofern diese bereits falsch ist.)
+
+3)
+Ein Zombie ist ein Thread, welcher seinen eigentlichen Zweck beendet hat, der
+aber immernoch in der Prozessdatenbank angelegt ist, obwohl kein Körper mehr
+vorhanden ist.
+Innerhalb eines C-Programmes kann man dann mit einem wait (bzw. waitpid(...))
+Befehl den Rückgabewert abrufen und den Prozess aus der Datenbank entfernen.
+Ausserhalb des Programmes kann man Prozesse manuell per kill-Befehl stoppen.
+
+4) a)
+for (;;) erzeugt eine Endlosschleife. In der ersten Generation existiert genau
+eine davon. Wenn diese fork() aufruft ist die erste Generation beendet. Die
+zweite Generation startet dann also mit 2 Prozessen. Man erkennt jetzt, dass
+diese ebenfalls wieder jeweils einen Prozess erzeugen, also am Ende 4 insgesamt.
+Man erkennt: Die Anzahl der Prozesse wird durch eine Funktion über Generationen
+beschrieben, mit n als Anzahl der komplett ausgeführten Generation:
+
+        / 1,        für n = 0
+f(n) = <
+        \ 2*f(n-1), sonst
+
+4) b)
+Das Problem ist, dass dadurch, dass so viele Prozesse erstellt werden die
+Prozess-Datenbank saturiert wird und der Speicher immer weiter aufgefüllt wird.
+Der fork() Befehl an sich benötigt natürlich außerdem CPU. Dadurch kann ohne
+Limits im schlimmsten Fall das gesamte System blockiert werden.
+Gegenmaßnahmen sind deshalb sinnvoll, da das Ausmaß in Schach gehalten wird und
+der verursachende Prozess i.d.R. sehr viel einfacher gestoppt werden kann.
+
+# Beispieldatei für gegebene harte Limits:
+# Limit für den Benutzer tux
+tux		hard	nproc	100
+@guests	hard	nproc	2000
