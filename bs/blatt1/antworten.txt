@@ -51,7 +51,7 @@ Sie macht also das gleiche wie der C-Code, außer dass eine komplett neue Instan
 anstatt einer kopierten verwendet wird.
 
 Anhang: Ad absurdum. Mehrere asynchrone Aufrufe von "ps".
-Es fällt auf, dass wenn man das Programm forkt und sowohl im Kindprozess, als
-auch im Elternprozess ps aufruft, die Ausgaben sich überlappen. Das liegt daran,
-dass die Prozesse während des Schreibens unterbrochen werden (bzw. auf
-Multicore-Systemen gleichzeitig auf den Output-Stream der Konsole zugreifen können).
+Wenn mehrere Aufrufe von ps gemacht werden, so gibt ein Aufruf den Fehler:
+bad option zurück. Der andere scheint normal zu laufen.
+Vielleicht liegt es daran, dass beide Prozesse versuchen, auf die Prozess-
+datenbank des selben Nutzers zur selben Zeit zuzugreifen?
