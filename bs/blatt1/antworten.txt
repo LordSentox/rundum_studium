@@ -39,3 +39,19 @@ der verursachende Prozess i.d.R. sehr viel einfacher gestoppt werden kann.
 # Limit für den Benutzer tux
 tux		hard	nproc	100
 @guests	hard	nproc	2000
+
+4) c)
+Mit :() {} wird eine Funktion des Namens : definiert. Der Rumpf ist natürlich
+nicht leer wie hier, sondern enthält noch :|:&. Durch : ruft sich die Funktion
+noch einmal selber auf. Zur gleichen Zeit wird dann mit der Pipe die Standard-
+ausgabe an einen zweiten Aufruf von : weitergegeben, denn dieser soll asynchron
+ausgeführt werden (Bedeutung des &). Somit ist die Fork-Bomben-Funktion
+definiert. Sie wird jetzt nur noch in einem neuen Befehl (nach ;) aufgerufen.
+Sie macht also das gleiche wie der C-Code, außer dass eine komplett neue Instanz
+anstatt einer kopierten verwendet wird.
+
+Anhang: Ad absurdum. Mehrere asynchrone Aufrufe von "ps".
+Es fällt auf, dass wenn man das Programm forkt und sowohl im Kindprozess, als
+auch im Elternprozess ps aufruft, die Ausgaben sich überlappen. Das liegt daran,
+dass die Prozesse während des Schreibens unterbrochen werden (bzw. auf
+Multicore-Systemen gleichzeitig auf den Output-Stream der Konsole zugreifen können).
