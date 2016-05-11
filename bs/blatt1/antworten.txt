@@ -1,3 +1,12 @@
+1)
+Ohne fork() sprigt das Programm in die Funktion hinein und führt den Code in dieser
+Funktion aus. Wenn allerdings zunächst fork() aufgerufen wird, so wird das Programm
+danach in die Funktion springen. Gleichzeitig allerdings wird allerdings die Kopie
+ebenfalls in die Funktion springen. (Hierbei gehe ich davon aus, dass keine
+Unterscheidung zwischen Kind- und Elternprozess gemacht wird, da in der
+Aufgabenstellung nicht weiter darauf eingegangen wurde.) Es laufen also zwei Aufrufe
+der selben Funktion zumindest Pseudo-gleichzeitig ab.
+
 2)
 Der Operator | heißt Pipe. Setzt man ihn zwischen zwei Befehle, so wird der
 linke Befehl ausgeführt und die Ausgabe des Befehls wird in den von der Pipe
@@ -39,3 +48,19 @@ der verursachende Prozess i.d.R. sehr viel einfacher gestoppt werden kann.
 # Limit für den Benutzer tux
 tux		hard	nproc	100
 @guests	hard	nproc	2000
+
+4) c)
+Mit :() {} wird eine Funktion des Namens : definiert. Der Rumpf ist natürlich
+nicht leer wie hier, sondern enthält noch :|:&. Durch : ruft sich die Funktion
+noch einmal selber auf. Zur gleichen Zeit wird dann mit der Pipe die Standard-
+ausgabe an einen zweiten Aufruf von : weitergegeben, denn dieser soll asynchron
+ausgeführt werden (Bedeutung des &). Somit ist die Fork-Bomben-Funktion
+definiert. Sie wird jetzt nur noch in einem neuen Befehl (nach ;) aufgerufen.
+Sie macht also das gleiche wie der C-Code, außer dass eine komplett neue Instanz
+anstatt einer kopierten verwendet wird.
+
+Anhang: Ad absurdum. Mehrere asynchrone Aufrufe von "ps".
+Wenn mehrere Aufrufe von ps gemacht werden, so gibt ein Aufruf den Fehler:
+bad option zurück. Der andere scheint normal zu laufen.
+Vielleicht liegt es daran, dass beide Prozesse versuchen, auf die Prozess-
+datenbank des selben Nutzers zur selben Zeit zuzugreifen?
