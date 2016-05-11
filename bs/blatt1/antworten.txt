@@ -1,3 +1,12 @@
+1)
+Ohne fork() sprigt das Programm in die Funktion hinein und führt den Code in dieser
+Funktion aus. Wenn allerdings zunächst fork() aufgerufen wird, so wird das Programm
+danach in die Funktion springen. Gleichzeitig allerdings wird allerdings die Kopie
+ebenfalls in die Funktion springen. (Hierbei gehe ich davon aus, dass keine
+Unterscheidung zwischen Kind- und Elternprozess gemacht wird, da in der
+Aufgabenstellung nicht weiter darauf eingegangen wurde.) Es laufen also zwei Aufrufe
+der selben Funktion zumindest Pseudo-gleichzeitig ab.
+
 2)
 Der Operator | heißt Pipe. Setzt man ihn zwischen zwei Befehle, so wird der
 linke Befehl ausgeführt und die Ausgabe des Befehls wird in den von der Pipe
