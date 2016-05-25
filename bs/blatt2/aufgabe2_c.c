@@ -99,7 +99,7 @@ void *handle_team(void *arg) {
 int main(void) {
     // Am Anfang ist der Sockel leer.
     sockel = LEER;
-	
+
 	// Jedes Team bekommt einen eigenen Thread zugeteilt.
 	pthread_t threads[ANZAHL_TEAMS];
 
@@ -126,7 +126,7 @@ int main(void) {
 		printf("%i\n", s);
 		sleep(1);
 	}
-	printf("Start!");
+	printf("Start!\n");
 	starting_signal = 1;
 
 	// Warte, bis alle Teams fertig sind.

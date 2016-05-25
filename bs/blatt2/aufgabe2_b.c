@@ -133,7 +133,7 @@ int main(void) {
 		printf("%i\n", s);
 		sleep(1);
 	}
-	printf("Start!");
+	printf("Start!\n");
 	starting_signal = 1;
 
 	// Warte, bis alle Teams fertig sind.
