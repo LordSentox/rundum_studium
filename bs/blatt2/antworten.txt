@@ -1,0 +1,24 @@
+Aufgabe 1)
+
+1.
+
+  0    5    10   15   20   25   30
+  |    |    |    |    |    |    |
+--+-------------------------------
+A |CCCIIC      CCIICC  CII   CCCII...
+B |   CCIII  CCIII   CCIII CCIII  ...
+C |      CCCC    CCIIIIIICC     CC...
+--+-------------------------------
+
+2.
+Der Vorteil von VRR im Gegenzug zu RR ist, dass  die CPU-Verteilung etwas
+fairer ist. I/O-starke Jobs werden in die virtuelle Warteschlange eingetragen
+und somit u.U. einen zweiten I/O-Schub starten, wo sie ansonsten keine Arbeit
+verrichten würden.
+
+Aufgabe 2) b)
+Das Problem wenn man keinen Mutex und nur den naiven Ansatz nimmt ist, dass in
+der Lock-Methode immernoch der Fall auftreten kann, dass 2 Threads auf die
+while-Überprüfung warten und sobald sie freigegeben wird beide in die nächste
+Phase übergehen, also gleichzeitig in das Lock schreiben. Ab dann ist wieder die
+selbe Situation gegeben wie ohne jeglichen Mechanismus.
