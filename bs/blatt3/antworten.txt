@@ -1,0 +1,47 @@
+A 3)
+b)
+Mutual exclusion:
+Der Kritische Zeitraum wird von beiden Threads betreten, sobald die erste
+Resource gelockt wurde. Da sie unterschiedliche Resourcen zuerst locken, können
+also die beiden Mitarbeiter gleichzeitig in den kritischen Abschnitt gelangen.
+
+No Preemption:
+Beide Mitarbeiter halten die Listen so lange sie wollen. Es gibt keinen Prozess,
+der dafür sorgt, dass die Mitarbeiter ihre geliehenen Resourcen wieder abgeben
+müssen, solange sie nicht durch den kritischen Abschnitt sind.
+
+Hold and wait:
+A nimmt zunächst die Klausuren und wartet dann auf die Liste, weiterhin das
+Lock zu den Klausuren haltend.
+B macht exakt das gleiche, nur mit Klausuren und Liste vertauscht.
+
+Circular wait:
+Betreten A und B gleichzeitig den kritischen Abschnitt, so kann B die Liste und
+A die Klausuren bekommen. Dann wartet B darauf, dass A die Klausuren freigibt
+und A wartet darauf, dass B die Liste freigibt, wärend das jeweilige andere
+Element gehalten wird. Somit entsteht ein geschlossener Kreis von Abhängigkeiten.
+
+Kein Livelock:
+Um ein Livelock zu erzeugen müssten 2 Threads ihre jeweilige Ressource wieder
+aufgeben, nachdem z.B. erkannt wurde, dass es nicht funktioniert. Da die
+Prozesse allerdings ihre Locks nicht wieder Aufgeben, bis die Arbeit beendet ist,
+kommt es hier zu keinem Livelock.
+
+c)
+Um festzustellen, ob ein Deadlock existiert, kann der Professer nach einem der
+beiden Mitarbeiter sehen. Wenn der Mitarbeiter bereits eine Ressource belegt hat
+aber auf die andere wartet, so ist es zu einem Deadlock gekommen. Da es in der
+Praxis ein bisschen dauert, um die Ressourcen zu holen, muss der Professor in
+dem Fall allerdings noch sehen, ob die Ressource auch wirklich von jemand
+Anderem belegt ist, um sicher zu gehen, dass ein Deadlock eingetreten ist.
+Der Professor muss also bei einem Mitarbeiter nachsehen, falls er beide
+Materialien hat. Falls nur eines der beiden Materialien vorhanden ist, muss
+er auch noch bei dem anderen Mitarbeiter nachsehen.
+
+d)
+Um das Deadlock wieder aufzulösen muss kann jetzt einer der beiden Prozesse
+priorisiert werden. Das bedeutet, dass bei Erkennen des deadlocks ein Prozess
+abgebrochen wird und die von dem Prozess belegte Ressource freigegeben werden
+kann. Alternativ könnte der Prozess z.B. auch einfach an den Anfang des
+kritischen Bereichs gesetzt werden, nachdem die Ressource an den anderen
+Prozess übergeben wurde.
